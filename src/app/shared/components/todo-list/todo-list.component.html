@@ -1,0 +1,22 @@
+<ul class="list-group" *ngIf="gettoodArr.length > 0; else notodos">
+    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let todo of gettoodArr; trackBy: trackByFun">
+        <strong>
+            {{todo.todoItem}}
+        </strong>
+        <div >
+            <button
+            (click)="onEdit(todo)"
+            mat-mini-fab color="primary" class="mr-2"><mat-icon>edit</mat-icon></button>
+            <button 
+            (click)="onRemove(todo.todoId)"
+            mat-mini-fab color="warn"><mat-icon>delete</mat-icon></button>
+        </div>
+    </li>
+</ul>
+
+<ng-template #notodos>
+    <p class="alert alert-info">
+        No Todos !!!
+    </p>
+</ng-template>
+

@@ -1,0 +1,18 @@
+
+
+<div class="row">
+    <div class="col-md-4">
+        <app-std-form
+        (emitupdatestd)="getupdatestd($event)"
+        [editobj]="getEditObj"
+        (emitnewstd)="getnewstd($event)"
+        ></app-std-form>
+    </div>
+    <div class="col-md-8">
+        <app-std-table
+        (emitobj)="geteditobj($event)"
+        (emitremoveid)="getremoveid($event)"
+        [getstdArr]="stdArr"
+        ></app-std-table>
+    </div>
+</div>
