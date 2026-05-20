@@ -7,10 +7,10 @@ import { Itodo } from '../../models/todo';
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent implements OnInit, OnChanges {
-  isInEditMode : boolean = false
-  @ViewChild('todoItem') todoItem !: ElementRef 
-  @Output() emitnewTodo : EventEmitter<Itodo> = new EventEmitter<Itodo>()
-  @Output() emitupdateTodo : EventEmitter<Itodo> = new EventEmitter<Itodo>()
+  isInEditMode: boolean = false
+  @ViewChild('todoItem') todoItem !: ElementRef
+  @Output() emitnewTodo: EventEmitter<Itodo> = new EventEmitter<Itodo>()
+  @Output() emitupdateTodo: EventEmitter<Itodo> = new EventEmitter<Itodo>()
   @Input() getEditObj !: Itodo
   constructor() { }
 
@@ -19,18 +19,18 @@ export class TodoFormComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     let val = changes['getEditObj'].currentValue
-    if(val){
+    if (val) {
       this.isInEditMode = true
       this.todoItem.nativeElement.value = this.getEditObj.todoItem
     }
   }
 
-  onAdd(){
+  onAdd() {
     let todoItemVal = this.todoItem.nativeElement.value
-    if(todoItemVal.length > 0){
-      let newTodo : Itodo = {
+    if (todoItemVal.length > 0) {
+      let newTodo: Itodo = {
         todoItem: todoItemVal,
-        todoId : Date.now().toString()
+        todoId: Date.now().toString()
       }
       console.log(newTodo);
       this.emitnewTodo.emit(newTodo)
@@ -39,16 +39,18 @@ export class TodoFormComponent implements OnInit, OnChanges {
 
   }
 
-  onUpdate(){
-    let updateObj : Itodo = {
-      todoItem : this.todoItem.nativeElement.value,
-      todoId : this.getEditObj.todoId
+  onUpdate() {
+    let todoItemVal = this.todoItem.nativeElement.value
+    if (todoItemVal.length > 0) {
+      let updateObj: Itodo = {
+        todoItem: this.todoItem.nativeElement.value,
+        todoId: this.getEditObj.todoId
+      }
+      this.emitupdateTodo.emit(updateObj)
+      this.todoItem.nativeElement.value = ''
+      this.isInEditMode = false
     }
-    this.emitupdateTodo.emit(updateObj)
-    this.todoItem.nativeElement.value = ''
-    this.isInEditMode = false
-  }
 
- 
+  }
 
 }

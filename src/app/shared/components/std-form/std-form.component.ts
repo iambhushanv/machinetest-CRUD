@@ -63,7 +63,14 @@ export class StdFormComponent implements OnInit, OnChanges {
   }
 
   onUpdate() {
-    let updatedOBj: Istd = {
+     let fnameVal = this.fname.nativeElement.value
+    let lnameVal = this.lname.nativeElement.value
+    let emailVal = this.email.nativeElement.value
+    let contactVal = this.contact.nativeElement.value
+    let isActiveVal = this.isActive.nativeElement.value === 'true' ? true : false
+
+    if (fnameVal.length > 0 && lnameVal.length > 0 && emailVal.length > 0 && contactVal.length > 0) {
+       let updatedOBj: Istd = {
       fname: this.fname.nativeElement.value,
       lname: this.lname.nativeElement.value,
       email: this.email.nativeElement.value,
@@ -79,6 +86,8 @@ export class StdFormComponent implements OnInit, OnChanges {
     this.email.nativeElement.value = ''
     this.isActive.nativeElement.value = true
     this.isInEditMode = false
+    }
+   
 
   }
 
